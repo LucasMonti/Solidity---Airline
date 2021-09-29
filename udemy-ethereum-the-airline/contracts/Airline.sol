@@ -21,7 +21,7 @@ contract Airline {
     mapping(address => Flight[]) public customerFlight;
     mapping(address => uint) public customerTotalFlights;
 
-    event FlightPurchased(address indexed customer, uint price);
+    event FlightPurchased(address indexed customer, uint price, string flight);
 
     constructor() public {
         owner = msg.sender;
@@ -40,7 +40,7 @@ contract Airline {
         customerFlight[msg.sender].push(flight);
         customerTotalFlights[msg.sender] ++;
 
-        emit FlightPurchased(msg.sender, flight.price);
+        emit FlightPurchased(msg.sender, flight.price, flight.name);
 
     }
 
